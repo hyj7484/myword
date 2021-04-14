@@ -1,6 +1,7 @@
 body {
-  width: 50%;
-  margin: 0 auto;background-color: rgba(220, 240, 220, 0.1);
+  width: 850px;
+  margin: 0 auto;
+  background-color: rgba(223, 217, 245, 1);
 }
 
 .App {

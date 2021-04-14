@@ -1,12 +1,20 @@
 const express = require('express');
-const router = express.Router();
+const app = express();
 
+const naverApi = require('./naverAPI/papago');
+const user = require('./model/user');
+const word = require('./model/word');
+const wordbook = require('./model/wordbook');
 
-router.get('/a', (req, res) => {
+app.get('/a', (req, res) => {
   res.json({username : "bob"});
 })
-router.get('/', (req, res) => {
+app.get('/', (req, res) => {
   res.json({username : "tom"});
 })
+app.use('/user', user);
+app.use('/word', word);
+app.use('/wordbook', wordbook);
+app.use('/naverapi', naverApi);
 
-module.exports = router;
+module.exports = app;

@@ -1,0 +1,49 @@
+.Home_Main{
+  width: 100%;
+  height: 100%;
+  margin-top : 50px;
+}
+.Home_Content{
+  width: 100%;
+  margin: 0 auto;
+}
+
+.Home_wordSearch{
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.Home_wordSearch_top{
+  width: 100%;
+  height: 50px;
+  border: 1px solid black;
+  background-color: rgba(141, 117, 170, 1);
+  font-size: 23px;
+  line-height: 50px;
+}
+.Home_wordSearch_bottom{
+    width: 100%;
+}
+.Home_wordSearch_input{
+  width: 200px;
+  height: 25px;
+}
+
+.Home_papago_result{
+  width: 100%;
+  height: 300px;
+  border : 1px solid black;
+}
+.Home_papago_result_content{
+  height: 270px;
+  border-top: 1px solid black;
+}
+.Home_papgo_result_text{
+  font-size: 22px
+}
+.Home_WordBookList{
+  width: 80%;
+  margin: 0 auto;
+  padding-top : 30px;
+}

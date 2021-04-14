@@ -1,16 +1,51 @@
 .Login_Main{
   width: 500px;
   height: 600px;
-  margin: 0 auto;
-  margin-top : 20px;
+  margin: 50px auto;
   background-color: rgba(220, 240, 220, 0.3);
   box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.5);
 }
-
 .Login_Content{
   padding-top : 100px;
   text-align: center;
 }
+.Login_Table{
+  margin : 0 auto;
+}
+.Login_Head_td{
+  height: 150px;
+}
+.Login_Body_td_left{
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+  /* border: 1px solid black; */
+}
+.Login_Body_td_right{
+  width: 300px;
+  height: 50px;
+  /* border : 1px solid black; */
+}
+.Login_body_Input{
+  width: 250px;
+  height: 30px;
+}
+.Login_Btn_Div{
+  width: 100%;
+  height: 100px;
+}
+.Login_Btn{
+  width: 100px;
+  height: 40px;
+  line-height: 100px;
+  border-radius: 15px;
+}
+.Login_Btn:hover{
+  width: 120px;
+  height: 60px;
+  border-radius: 25px;
+}
+/*
 .Login_Input{
   margin : 0 auto;
   font-size: 20px;
@@ -25,8 +60,4 @@
   width: 150px;
   height: 20px
 }
-.Login_Btn{
-  width: 80px;
-  height: 30px;
-  margin : 0px 10px;
-}
+ */

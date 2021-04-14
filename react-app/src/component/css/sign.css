@@ -1,0 +1,32 @@
+.Sign_Main{
+  width: 500px;
+  height: 600px;
+  margin: 0 auto;
+  margin-top : 20px;
+  background-color: rgba(220, 240, 220, 0.3);
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.Sign_Content{
+  padding-top : 100px;
+  text-align: center;
+}
+.Sign_Input{
+  margin : 0 auto;
+  font-size: 20px;
+}
+.Sign_Input>tr{
+  height: 50px;
+}
+.Sign_Input_text{
+  width: 50px;
+}
+.Sign_Input>tr>td>input{
+  width: 150px;
+  height: 20px
+}
+.Sign_Btn{
+  width: 80px;
+  height: 30px;
+  margin : 0px 10px;
+}

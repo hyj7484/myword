@@ -10,6 +10,7 @@
 .Logo_MainLogo{
   position: absolute;
   left: 50%;
+  transform: translate(-50%);
 }
 .Logo_Link{
   float: right;
