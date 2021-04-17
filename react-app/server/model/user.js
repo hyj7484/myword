@@ -22,7 +22,7 @@ app.post('/sign/add', (req, res) => {
   if( id != null && pw != null && name != null){
   mysql.query(`select * from users where userid = '${id}'`, (error, rows) => {
     if(rows.length == 0){
-      mysql.query(`insert into users values('${id}', '${pw}', '${name}')`, (err, rows) => {
+      mysql.query(`insert into users(userid, userpw, username) values('${id}', '${pw}', '${name}')`, (err, rows) => {
         res.json(true);
       });
     }else{

@@ -33,18 +33,45 @@
 .Login_Btn_Div{
   width: 100%;
   height: 100px;
+  margin-top: 30px;
 }
 .Login_Btn{
   width: 100px;
   height: 40px;
-  line-height: 100px;
   border-radius: 15px;
+  margin : 0px 15px;
+  border : 0;
+  outline: 0;
 }
-.Login_Btn:hover{
-  width: 120px;
-  height: 60px;
-  border-radius: 25px;
+.Login_Fail_Main{
+  width: 10%;
+  height: 100%;
+  z-index: 1;
+  /* background-color: rgba(255, 255, 255, 0.1); */
 }
+.Login_Fail_Main{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top : 50%;
+  left : 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(20, 20, 20, 0.3)
+}
+.Login_Fail{
+  position: absolute;
+  top : 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 250px;
+  border: 2px solid black;
+  text-align: center;
+  color : red;
+  font-size: 20px;
+  background: white;
+}
+
 /*
 .Login_Input{
   margin : 0 auto;

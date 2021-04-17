@@ -1,8 +1,7 @@
 import Home from './Home';
 import Login from './Login';
 import Sign from './Sign';
-import AddWord from './AddWord';
+import Word from './Word';
 import WordBook from './WordBook';
-import Test from './Test';
 
-export {Home, AddWord, Login, Sign, WordBook, Test};
+export {Home, Login, Sign, WordBook, Word};

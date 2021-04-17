@@ -11,8 +11,6 @@ app.post('/search/:type', (req, res) => {
   const request = require('request');
 
   if(req.params.type != null && req.body.content != null){
-    console.log(source)
-    console.log(target);
     const option = {
       url : url,
       form : { 'source' : source, 'target' : target, 'text' : req.body.content },
@@ -21,7 +19,6 @@ app.post('/search/:type', (req, res) => {
     request.post(option, (err, response, body) => {
       if(!err && response.statusCode == 200){
         const data = JSON.parse(body).message;
-        console.log(data.result)
         res.json(data.result)
       }else{
         res.status(response.statusCode).end();

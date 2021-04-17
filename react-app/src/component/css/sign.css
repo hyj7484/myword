@@ -8,10 +8,48 @@
 }
 
 .Sign_Content{
+  width: 100%;
   padding-top : 100px;
   text-align: center;
 }
-.Sign_Input{
+.Sign_Table{
+  width: 60%;
+  margin: 0 auto;
+}
+
+.Sign_PwChk{
+  width: 100%;
+  height: 30px;
+  margin: 10px auto;
+  text-align: center;
+  color: red;
+  font-size: 20px;
+}
+.Sign_Info_text{
+  width: 100px;
+  height: 40px;
+  text-align: left;
+  font-size: 23px;
+}
+.Sign_Input_td{
+  height: 40px;
+}
+.Sign_Input_text{
+  width: 100%;
+  height: 22px;
+}
+
+.Sign_Btn{
+  width: 100px;
+  height: 40px;
+  border-radius: 15px;
+  margin : 0px 15px;
+  border : 0;
+  outline: 0;
+}
+
+/*  */
+/* .Sign_Input{
   margin : 0 auto;
   font-size: 20px;
 }
@@ -29,4 +67,4 @@
   width: 80px;
   height: 30px;
   margin : 0px 10px;
-}
+} */

@@ -1,66 +1,54 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import './css/WordBookList.css';
 
 
 export default function WordBookList(props){
-  const [word, setWord] = useState({wordbook : null});
-  useEffect(()=>{
-    const url = '/api/wordbook/getWordBooks';
+  const wordBooks = props.wordBooks;
+  const setWordBooks = props.setWordBooks;
+  const history = useHistory();
+  const getMenu = props.getMenu;
+  const setMenu = props.setMenu;
+  useEffect(() => {
+    const url = "/api/wordbook/getWordBooks";
     const option = {
-      user : user.id,
+      id : props.user.id
     }
     axios.post(url, option)
     .then(req => {
-      setWord({wordbook : req.data})
+      req.data ? setWordBooks(req.data) : console.log(req.data)
     })
   }, [])
-  if(props.word != null){
-    word.wordbook.append(props.word)
-  }
 
-  const view_wordbook = () => {
-
-    if(word.wordbook != null){
-      let a = false;
-      console.log(typeof word.wordbook)
-      return (
-        <div>
-          {word.wordbook.map((list, index) => {
-            if( list == props.word){
-              a = true;
-            }
-            return ( <div className="WordBookList_BookList" key={index} onClick={()=>{moveWordBook(list.wordbook)}}> {list.wordbook} </div> )
-          })}
-        </div>
-      )
-      console.log("chkchkchk");
-      if(!a && props.word != null){
-        let appendWord = word.wordbook;
-        appendWord.append(props.word)
-        setWord({
-          ...word,
-          wordbook : appendWord,
-        })
+  const setWordBook_View = () => {
+    const view = wordBooks != null ? wordBooks.map( (list, index) => {
+      const onClickWordBook = () => {
+        if(getMenu()) { setMenu() }
+        history.push(props.wordurl || '/word/look/'+list.wordbook);
       }
-    }else{
-      return null;
-    }
-  }
+      return (
+        <div onClick={onClickWordBook}
+          key = {index}
+          style={{
+            width:"200px",
+            height:"100px",
+            border:"1px solid black",
+            margin : "10px 10px",
+            float : "left",
+            lineHeight : "100px",
+            textAlign : "center",
+          }}>
+          {list.wordbook}
+        </div>)
+    }) : null;
 
-  const user = props.user;
-  const history = useHistory();
-  const moveWordBook = (argUrl) => {
-    const url = '/word/look/' + argUrl;
-    history.push(url);
+    return view;
   }
 
   return (
-    <div className="WordBookList_Main" style={{width:"100%", height:"100%"}}>
-      <div className="WordBookList_Content">
-        {view_wordbook()}
-      </div>
+    <div className="WordBookList_Main">
+      {setWordBook_View()}
     </div>
   )
 }

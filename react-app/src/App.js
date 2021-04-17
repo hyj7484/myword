@@ -1,104 +1,53 @@
 import React, {useState, useEffect} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Logo, Menu, AddWordBook} from './template';
-import { Home, AddWord, Login, Sign, WordBook, Test } from './component';
+import { Logo } from './template';
+import { Home, Login, Sign, Word } from './component';
 
 import './App.css';
 
 function App(props) {
   const [menuBar, setMenuBar] = useState(false);
   const [user, setUser] = useState(null)
-
+  const [wordBooks, setWordBooks] = useState(null);
   const setMenu = () => {
     setMenuBar(!menuBar);
   }
-
-
+  const getMenu = () => {
+    return menuBar
+  }
+  useEffect(()=>{
+    localStorage.getItem('user') && setUser(JSON.parse(localStorage.getItem('user')));
+  }, [])
+  useEffect(()=>{
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [user])
   return (
     <div className="App">
       <Router>
+      {user != null && <Logo user={user} setUser={setUser} getMenu={getMenu} setMenu={setMenu} setWordBooks={setWordBooks} wordBooks={wordBooks}/>}
+      <div className="App_Content">
         <Switch>
-          {user != null && <Logo user={user} setMenu={setMenu}/>}
           <Route path="/sign" exact>
             <Sign />
           </Route>
+          <Route path="/word/look/:wordbook" exact>
+            <Word user={user}/>
+          </Route>
           <Route path="/" exact>
-            {user != null ? <Home user={user}/> : <Login setUser={setUser}/> }
+            {user != null ?
+              <Home user={user} wordBooks={wordBooks} setWordBooks={setWordBooks} getMenu={getMenu} setMenu={setMenu}/>
+              :
+              <Login setUser={setUser}/>}
           </Route>
           <Route path="*">
             No Page
           </Route>
+
         </Switch>
+      </div>
       </Router>
     </div>
   )
-  //
-  // const [view, setView] = useState({
-  //   menu : false,
-  //   wordBook : false,
-  //   word : null,
-  // });
-  // useEffect(()=>{
-  //   console.log(view);
-  //   console.log("useEffect");
-  // }, []);
-  // useEffect(()=>{
-  //   console.log("view change");
-  // }, [view]);
-  //
-  // const addUser = (data) => {
-  //   setUser(data);
-  // }
-  // const setWordBook = (argWord) => {
-  //   const word = typeof argWord === "string" ? argWord : null;
-  //
-  //   setView({
-  //     ...view,
-  //     wordBook : !view.wordBook,
-  //     word : word
-  //   })
-  // }
-  // const setMenu = () => {
-  //   setView({
-  //     ...view,
-  //     menu : !view.menu
-  //   })
-  // }
-  // const getMenu = () => {
-  //   return view.menu
-  // }
-  //
-  // return (
-  //   <div className="App">
-  //     <Router>
-  //       {user.name != null && <Logo setMenu={setMenu} setWord={setWordBook} getMenu={getMenu}/>}
-  //       {view.menu && <Menu setMenu={setMenu} getMenu={getMenu}/>}
-  //       <div className="Content">
-  //       {view.wordBook && <AddWordBook user={user} setWordBook={setWordBook}/>}
-  //       <Switch>
-  //         <Route path="/sign" exact>
-  //           <Sign />
-  //         </Route>
-  //         <Route path="/" exact>
-  //           {user.name != null ? <Home user={user} data={view.word}/> : <Login setUser={addUser}/>}
-  //         </Route>
-  //         <Route path="/Word/input" exact>
-  //           <AddWord user={user} setWordBook={setWordBook}/>
-  //         </Route>
-  //         <Route path="/word/look/:wordbook" exact>
-  //           <WordBook user={user}/>
-  //         </Route>
-  //         <Route>
-  //           <Test user={user}/>
-  //         </Route>
-  //         <Route path="*" >
-  //           Null
-  //         </Route>
-  //       </Switch>
-  //       </div>
-  //     </Router>
-  //   </div>
-  // );
 }
 
 export default App;

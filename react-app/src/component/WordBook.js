@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import axios from 'axios';
 
-import { WordList } from '../template/';
 
 const data = {
   wordbook : null,
@@ -28,7 +27,7 @@ export default function WordBook(props){
 
   return (
     <div>
-      <WordList words={word}/>
+      
     </div>
   )
 }

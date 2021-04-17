@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './css/login.css';
 import axios from 'axios';
 
 const data = {
-  id : null,
-  pw : null
+  id : "",
+  pw : ""
 }
 const handleId = (event) =>{
   data.id = event.target.value;
@@ -18,17 +18,32 @@ const handlePw = (event) => {
 function Login(props){
   const history = useHistory();
   const setUser = props.setUser;
+  const [chkView, setChkView] = useState(false);
 
   const clickLogin = () => {
     const url = "/api/user/sign/login";
     axios.post(url, data)
     .then(req => {
-      req.data && setUser({id : req.data.id, name : req.data.name})
+      req.data ? setUser({id : req.data.id, userId : req.data.userId, name : req.data.userName}) : setChkView(true);
     })
+  }
+  const moveSign = () => {
+    history.push("/sign");
   }
 
   return (
     <div className="Login_Main">
+      {chkView &&
+        <div className="Login_Fail_Main">
+        <div className="Login_Fail">
+          <div style={{marginTop:"20px", color:"black"}}> Login Fail </div>
+          <hr />
+          <div style={{margin:"50px auto"}}><span> {data.id == "" ? <>아이디를 입력해 주세요.</> : data.pw == "" ? <>비밀번호를 입력해 주세요.</> : <>아이디 또는 비밀번호가 틀렸습니다.</> } </span></div>
+          <hr />
+          <button style={{width:"50px", height:"30px", marginTop:"10px", backgroundColor:"rgb(222, 149, 186)"}} onClick={()=>{setChkView(false)}}> 확인 </button>
+        </div>
+        </div>
+      }
       <div className="Login_Content">
         <table className="Login_Table">
           <thead className="Login_Thead">
@@ -44,7 +59,7 @@ function Login(props){
                 <span> ID </span>
               </td>
               <td className="Login_Body_td_right">
-                <input type="text" className="Login_body_Input"/>
+                <input type="text" className="Login_body_Input" onChange={handleId}/>
               </td>
             </tr>
             <tr>
@@ -52,43 +67,17 @@ function Login(props){
                 <span> PW </span>
               </td>
               <td className="Login_Body_td_right">
-                <input type="text" className="Login_body_Input"/>
+                <input type="password" className="Login_body_Input" onChange={handlePw}/>
               </td>
             </tr>
           </tbody>
         </table>
-        <div className="Login_Btn_Div"> <button className="Login_Btn"> Login </button> </div>
+        <div className="Login_Btn_Div">
+          <button className="Login_Btn" onClick={clickLogin}> Login </button>
+          <button className="Login_Btn" onClick={moveSign}> Sign </button>
+        </div>
       </div>
     </div>
-    // <div className="Login_Main">
-    //   <div className="Login_Content">
-    //     <table className="Login_Input">
-    //       <thead>
-    //         <tr>
-    //         <td colSpan="2">
-    //           <div className="Login_Bar" style={{marginBottom : "50px", fontSize : "30px"}}> Login </div>
-    //         </td>
-    //         </tr>
-    //       </thead>
-    //       <tbody className="Login_Input">
-    //       <tr>
-    //         <td className="Login_Input_text"> ID </td>
-    //         <td> <input tpye="text" name="id" defaultValue="" onChange={handleId}/> </td>
-    //       </tr>
-    //       <tr>
-    //         <td className="Login_Input_text"> PW </td>
-    //         <td> <input type="password" name="pw" defaultValue="" onChange={handlePw}/> </td>
-    //       </tr>
-    //       <tr>
-    //         <td colSpan="2">
-    //           <button className="Login_Btn" onClick={clickLogin}> Login </button>
-    //           <Link to="/sign"><button className="Login_Btn"> Sign </button> </Link>
-    //         </td>
-    //       </tr>
-    //       </tbody>
-    //     </table>
-    //   </div>
-    // </div>
   )
 }
 

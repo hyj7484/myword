@@ -1,0 +1,15 @@
+.FlipView_word_Content{
+  width: 100%;
+  height: 100%;
+  display: table;
+  text-align: center;
+}
+.FlipView_word_text{
+    display: table-cell;
+    vertical-align: middle;
+    background-color: red;
+}
+
+.FlipView_word_text{
+  position: relative;
+}

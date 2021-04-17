@@ -1,8 +1,7 @@
 import Logo from './Logo';
-import Menu from './Menu';
 import Papago from './Papago';
-import AddWordBook from './AddWordBook';
 import WordBookList from './WordbookList';
-import WordList from './WordList';
+import FlipView from './FlipView';
+import Test from './Test';
 
-export {Logo, Menu, Papago, AddWordBook, WordBookList, WordList};
+export {Logo, Papago, WordBookList, FlipView, Test};

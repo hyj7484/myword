@@ -3,13 +3,13 @@ const express = require('express');
 const app = express.Router();
 
 app.post('/addWordBook', (req, res) => {
-   const user = req.body.user;
+   const id = req.body.id;
    const wordbook = req.body.wordbook;
 
-   if(user != null && wordbook != null){
-     mysql.query(`insert into wordbook(user, wordbook) values('${user}', '${wordbook}')`, (err, rows) => {
+   if(id != null && wordbook != ""){
+     mysql.query(`insert into wordbooks(userId, wordbook) values(${id}, '${wordbook}')`, (err, rows) => {
        if(err) throw err;
-       else res.json(true);
+       else res.json({wordbook : wordbook});
      })
    }else{
      res.json(false)
@@ -17,10 +17,27 @@ app.post('/addWordBook', (req, res) => {
 })
 
 app.post('/getWordBooks', (req, res) => {
-  const user = req.body.user;
-  if(user != null){
-    mysql.query(`select wordbook from wordbook where user = '${user}'`, (err, rows) => {
+  const id = req.body.id;
+  if(id != null){
+    mysql.query(`select wordbook from wordbooks where  userId = '${id}'`, (err, rows) => {
+      if(err) throw err;
       res.json(rows);
+    })
+  }else{
+    res.json(false)
+  }
+})
+
+app.post('/deleteWordBook', (req, res) => {
+  const id = req.body.id;
+  const wordbook = req.body.wordbook;
+  if(id != null){
+    mysql.query(`delete from wordbooks where userId = ${id} and wordbook = ${wordbook}`, (err, rows) => {
+      if(err) throw err;
+      mysql.query(`delte from words where userid = ${id} and wordbook = ${wordbook}`, (err, rows) => {
+        if(err) throw err;
+        res.json(true)
+      })
     })
   }else{
     res.json(false)
