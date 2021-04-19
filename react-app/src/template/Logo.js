@@ -1,5 +1,5 @@
-import React, {useState, useHistory} from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import React, {useState} from 'react';
+import { Link, useRouteMatch, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import "./css/Logo.css";
@@ -13,11 +13,12 @@ export default function Logo(props){
   const getMenu = props.getMenu;
   const wordBooks = props.wordBooks;
   const setWordBooks = props.setWordBooks;
-
+  const history = useHistory();
   const clickLogout = () => {
     localStorage.setItem('user', null);
     props.setUser(null)
     setMenu();
+    history.push('/')
   }
   const addWord = () => {
     const wordData = {
