@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link, useRouteMatch, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -9,9 +9,12 @@ import "./css/Logo.css";
 export default function Logo(props){
   const [addData, setAddData] = useState(null);
   const [errView, setErrView] = useState(null);
+  const [selectWordBook, setSelectWordBook] = useState(null);
+
   const setMenu = props.setMenu;
   const getMenu = props.getMenu;
   const wordBooks = props.wordBooks;
+
   const setWordBooks = props.setWordBooks;
   const history = useHistory();
   const clickLogout = () => {
@@ -20,16 +23,25 @@ export default function Logo(props){
     setMenu();
     history.push('/')
   }
+
   const addWord = () => {
+    if(wordBooks.length == 0){
+      addWordBook_View();
+      return
+    }
+
+    if(selectWordBook == null && wordBooks.wordbook){
+      setSelectWordBook(wordBooks[0].wordbook)
+    }
     const wordData = {
       id : props.user.id,
-      wordbook : wordBooks[0].wordbook,
+      wordbook : selectWordBook,
       kor : "",
       jp1 : "",
       jp2 : "",
     }
     const handlewordBook = (e) => {
-      wordData.wordbook = e.target.value;
+      setSelectWordBook(e.target.value)
     }
     const handleKor = (e) => {
       wordData.kor = e.target.value;
@@ -71,7 +83,7 @@ export default function Logo(props){
     const wordList_View = () => {
       const view = wordBooks.map((list, index)=>{
         return (
-          <option value={list.wordbook} key={index}> {list.wordbook} </option>
+          <option value={list.wordbook} key={index} selected={list.wordbook == selectWordBook}> {list.wordbook} </option>
         )
       })
       return view;
@@ -79,7 +91,7 @@ export default function Logo(props){
 
     setAddData(
       <div className="Logo_AddWord_Main">
-<div className="Exit_Div" style={{backgroundColor:"rgb(202, 136, 222)"}}> <button className="Exit" onClick={clickExit}> X </button> </div>
+      <div className="Exit_Div" style={{backgroundColor:"rgb(202, 136, 222)"}}> <button className="Exit" onClick={clickExit}> X </button> </div>
         <div className="Logo_AddWord_Content">
           <div>
           <table style={{width:"60%",margin:"0 auto"}}>
@@ -122,6 +134,7 @@ export default function Logo(props){
   }
 
   const addWordBook_View = () => {
+    const text = null
     const wordBookData = {
       id : props.user.id,
       wordbook : "",
@@ -168,6 +181,7 @@ export default function Logo(props){
     setAddData(
       <div className="Logo_AddWordBook_Main">
         <div className="Exit_Div" style={{backgroundColor:"rgb(202, 136, 222)"}}> <button className="Exit" onClick={clickExit}> X </button> </div>
+        <div style={{textAlign:"center", width:"100%", color:"red"}}> {text} </div>
         <div className="Logo_AddWordBook_Content">
           <h2> 단어장 추가 </h2>
           <input type="text"  className="Logo_AddWordBook_Input" onChange={handleAddWordBook}/> <br/>
@@ -189,8 +203,8 @@ export default function Logo(props){
       </div>
       <div className="Logo_Link Logo_div">
         <ul className="Logo_ul">
-          <li> <a onClick={addWord}> 단어추가 </a> </li>
-          <li> <a onClick={addWordBook_View}> 단어장추가 </a> </li>
+          <li> <Link onClick={addWord}> 단어추가 </Link> </li>
+          <li> <Link onClick={addWordBook_View}> 단어장추가 </Link> </li>
         </ul>
       </div>
     </div>

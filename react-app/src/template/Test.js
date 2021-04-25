@@ -15,6 +15,7 @@ export default function Test(props){
   const [view, setView] = useState(null);
   const [gage, setGage] = useState(false);
   const [endView, setEndView] = useState(null);
+
   const words = props.words;
   const option = props.option;
   const exit = props.Exit;
@@ -41,7 +42,7 @@ export default function Test(props){
             })}
           </div>
           <div>
-            <button onClick={clickEndEnter}> 확인 </button>
+            <button className="Test_End_Btn" onClick={clickEndEnter}> 확인 </button>
           </div>
         </div>
       </div>
@@ -66,6 +67,7 @@ export default function Test(props){
           endQuestion()
         }
         setGage(false)
+        document.getElementById('answerText').value = ""
         setMsg(null)
       }
     }, 1000)
@@ -92,7 +94,7 @@ export default function Test(props){
           <h3> {words[0][option.question]} </h3>
         </div>
         <div className="Test_play_answer">
-          <input type="text" onChange={handleAnswer} onKeyPress={handleKeyEnter}/>
+          <input type="text" id="answerText" onChange={handleAnswer} onKeyPress={handleKeyEnter} />
         </div>
         <div className="Test_play_Btn_Dev">
           <button className="Test_play_Btn" onClick={onClickEnter}> 확인 </button>

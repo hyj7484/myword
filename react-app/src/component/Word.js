@@ -16,7 +16,6 @@ export default function Word(props) {
     setTest(null)
   }
 
-
   useEffect(()=>{
     if(props.user == null){
       history.push('/');
@@ -45,9 +44,9 @@ export default function Word(props) {
   const words_view = () => {
     const view = words ? words.map((list, index) => {
       const style = {
-        width : "180px",
+        width : "220px",
         height : "120px",
-        fontSize : "40px",
+        fontSize : "20px",
         float : "left",
         margin : "15px 20px",
       }
@@ -203,7 +202,9 @@ export default function Word(props) {
       <div className="Word_Top">
         <button className="Word_Btn" onClick={clickWordTest}> 단어 테스트 </button>
       </div>
+      <div className="Word_Content">
       {words_view()}
+      </div>
     </div>
   )
 }

@@ -13,7 +13,7 @@ export default function FlipView(props){
     setIsFlipped(!isFlipped);
   }
 
-  const deletWord = () => {
+  const deletWord = () =>{
     const url = "/api/word/delete"
     const option = {
       id : word.id
@@ -28,14 +28,14 @@ export default function FlipView(props){
 
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical" containerStyle={style}>
-      <div className="FlipView_word_Content" onClick={handleClick_Card}>
-        <div className="FlipView_delete"> <button className="FlipView_delete_Btn" onClick={deletWord}> 삭제 </button> </div>
-        <div className="FlipView_word_kor FlipView_word_text" style={textStyle}>  {word.kor}  </div>
-      </div>
-      <div className="FlipView_word_Content" onClick={handleClick_Card}>
-        <div className="FlipView_delete"> <button className="FlipView_delete_Btn" onClick={deletWord}> 삭제 </button> </div>
-        <div className="FlipView_word_jp1 FlipView_word_text" style={textStyle}>  {word.jp1} <br/> {word.jp2}  </div>
-      </div>
+    <div className="FlipView_word_Content" onClick={handleClick_Card}>
+      <div className="FlipView_delete"> <button className="FlipView_delete_Btn" onClick={deletWord}> 삭제 </button> </div>
+      <div className="FlipView_word_jp1 FlipView_word_text" style={textStyle}>  {word.jp1} <br/>  <span style={{fontSize:"15px"}}>{word.jp2}</span>  </div>
+    </div>
+    <div className="FlipView_word_Content" onClick={handleClick_Card}>
+      <div className="FlipView_delete"> <button className="FlipView_delete_Btn" onClick={deletWord}> 삭제 </button> </div>
+      <div className="FlipView_word_kor FlipView_word_text" style={textStyle}>  {word.kor}  </div>
+    </div>
     </ReactCardFlip>
   )
 }

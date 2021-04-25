@@ -54,10 +54,11 @@
 .Test_End_Content{
   position: absolute;
   left: 50%;
-  top: 50%;
+  top:50%;
+
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 500px;
+  width: 800px;
+  height: 90%;
   overflow: scroll;
   background-color: white;
   border : 1px solid black;
@@ -104,6 +105,14 @@
   animation-name: gage;
   animation-duration: 3s;
   z-index: 2;
+}
+.Test_End_Btn{
+  width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  margin : 30px auto;
+  border : 0;
+  outline: 0;
 }
 @keyframes gage {
   from{
