@@ -7,9 +7,10 @@ app.post('/add', (req, res)=>{
   const jp1 = req.body.jp1;
   const jp2 = req.body.jp2;
   const id = req.body.id;
-  const wordbook = req.body.wordbook;
-  if(id != null && wordbook != null){
-    mysql.query(`insert into words(userid, kor, jp1, jp2, wordbook) values('${id}', '${kor}', '${jp1}', '${jp2}', '${wordbook}')`, (err, rows) => {
+  const wordbookId = req.body.wordbookId;
+  console.log(req.body)
+  if(id != null && wordbookId != null){
+    mysql.query(`insert into words(userid, kor, jp1, jp2, wordbookId) values(${id}, '${kor}', '${jp1}', '${jp2}', '${wordbookId}')`, (err, rows) => {
       if(err) throw err;
       else res.json(true);
     })
@@ -19,10 +20,13 @@ app.post('/add', (req, res)=>{
 })
 
 app.post('/get', (req, res) => {
-  const wordbook  = req.body.wordbook;
+  console.log("---")
+  console.log(req.body)
+  const wordbookId  = req.body.wordbookId;
+
   const id      = req.body.id;
-  if(id != null && wordbook != null){
-    mysql.query(`select id, kor, jp1, jp2 from words where userId = '${id}' and wordbook = '${wordbook}'`, (err, rows) => {
+  if(id != null && wordbookId != null){
+    mysql.query(`select id, kor, jp1, jp2 from words where userId = '${id}' and wordbookId = ${wordbookId}`, (err, rows) => {
       if(err) throw err;
       else res.json(rows)
     })

@@ -30,18 +30,20 @@ export default function Logo(props){
       return
     }
 
-    if(selectWordBook == null && wordBooks.wordbook){
-      setSelectWordBook(wordBooks[0].wordbook)
+    if(selectWordBook == null && wordBooks.length != 0){
+      setSelectWordBook(wordBooks[0].id)
     }
     const wordData = {
       id : props.user.id,
-      wordbook : selectWordBook,
+      wordbookId : selectWordBook == null ? wordBooks[0].id : selectWordBook,
       kor : "",
       jp1 : "",
       jp2 : "",
     }
+    console.log(wordData)
     const handlewordBook = (e) => {
       setSelectWordBook(e.target.value)
+      wordData.wordbookId = e.target.value;
     }
     const handleKor = (e) => {
       wordData.kor = e.target.value;
@@ -57,6 +59,7 @@ export default function Logo(props){
     }
 
     const clickAdd = () => {
+      console.log(wordData)
       if(wordData.id != null){
         if(wordData.kor == "" || wordData.jp1 == "" || wordData.jp2 == ""){
           const clickErr = () => {
@@ -203,8 +206,8 @@ export default function Logo(props){
       </div>
       <div className="Logo_Link Logo_div">
         <ul className="Logo_ul">
-          <li> <Link onClick={addWord}> 단어추가 </Link> </li>
-          <li> <Link onClick={addWordBook_View}> 단어장추가 </Link> </li>
+          <li> <a onClick={addWord}> 단어추가 </a> </li>
+          <li> <a onClick={addWordBook_View}> 단어장추가 </a> </li>
         </ul>
       </div>
     </div>

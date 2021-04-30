@@ -17,6 +17,7 @@ export default function WordBookList(props){
     }
     axios.post(url, option)
     .then(req => {
+      console.log(req.data)
       req.data ? setWordBooks(req.data) : console.log(req.data)
     })
   }, [])
@@ -25,7 +26,7 @@ export default function WordBookList(props){
     const view = wordBooks != null ? wordBooks.map( (list, index) => {
       const onClickWordBook = () => {
         if(getMenu()) { setMenu() }
-        history.push(props.wordurl || '/word/look/'+list.wordbook);
+        history.push(props.wordurl || '/word/look/'+list.id);
       }
       return (
         <div onClick={onClickWordBook}

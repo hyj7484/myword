@@ -30,7 +30,7 @@ function App(props) {
           <Route path="/sign" exact>
             <Sign />
           </Route>
-          <Route path="/word/look/:wordbook" exact>
+          <Route path="/word/look/:wordbookId" exact>
             <Word user={user}/>
           </Route>
           <Route path="/" exact>

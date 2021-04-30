@@ -5,7 +5,7 @@ import './css/FlipView.css';
 
 
 export default function FlipView(props){
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(true);
   const style = props.style
   const textStyle = props.textStyle
   const word = props.word;

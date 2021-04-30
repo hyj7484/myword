@@ -19,8 +19,9 @@ app.post('/addWordBook', (req, res) => {
 app.post('/getWordBooks', (req, res) => {
   const id = req.body.id;
   if(id != null){
-    mysql.query(`select wordbook from wordbooks where  userId = '${id}'`, (err, rows) => {
+    mysql.query(`select wordbook, id from wordbooks where  userId = '${id}'`, (err, rows) => {
       if(err) throw err;
+      console.log(rows)
       res.json(rows);
     })
   }else{

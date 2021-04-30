@@ -6,7 +6,7 @@ import axios from 'axios'
 import './css/word.css';
 
 export default function Word(props) {
-  const wordbook = useRouteMatch("/word/look/:wordbook").params.wordbook;
+  const wordbookId = useRouteMatch("/word/look/:wordbookId").params.wordbookId;
   const [words, setWords] = useState(null)
   const [test, setTest] = useState(null)
   const [msg, setMsg] = useState(null)
@@ -23,7 +23,7 @@ export default function Word(props) {
       const url = "/api/word/get"
       const option = {
         id : props.user.id,
-        wordbook : wordbook
+        wordbookId : wordbookId
       }
       axios.post(url, option)
       .then(req => req.data && setWords(req.data))
@@ -35,7 +35,7 @@ export default function Word(props) {
     const url = "/api/word/get"
     const option = {
       id : props.user.id,
-      wordbook : wordbook
+      wordbookId : wordbookId
     }
     axios.post(url, option)
     .then(req => req.data && setWords(req.data))
