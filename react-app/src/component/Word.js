@@ -7,9 +7,10 @@ import './css/word.css';
 
 export default function Word(props) {
   const wordbookId = useRouteMatch("/word/look/:wordbookId").params.wordbookId;
-  const [words, setWords] = useState(null)
   const [test, setTest] = useState(null)
   const [msg, setMsg] = useState(null)
+  const words = props.words
+  const setWords = props.setWords
   const history = useHistory();
 
   const clickExit = () => {

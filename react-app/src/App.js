@@ -9,6 +9,7 @@ function App(props) {
   const [menuBar, setMenuBar] = useState(false);
   const [user, setUser] = useState(null)
   const [wordBooks, setWordBooks] = useState(null);
+  const [words, setWords] = useState(null);
   const setMenu = () => {
     setMenuBar(!menuBar);
   }
@@ -24,14 +25,14 @@ function App(props) {
   return (
     <div className="App">
       <Router>
-      {user != null && <Logo user={user} setUser={setUser} getMenu={getMenu} setMenu={setMenu} setWordBooks={setWordBooks} wordBooks={wordBooks}/>}
+      {user != null && <Logo words={words} setWords={setWords} user={user} setUser={setUser} getMenu={getMenu} setMenu={setMenu} setWordBooks={setWordBooks} wordBooks={wordBooks}/>}
       <div className="App_Content">
         <Switch>
           <Route path="/sign" exact>
             <Sign />
           </Route>
           <Route path="/word/look/:wordbookId" exact>
-            <Word user={user}/>
+            <Word user={user} setWords={setWords} words={words}/>
           </Route>
           <Route path="/" exact>
             {user != null ?

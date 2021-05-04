@@ -10,7 +10,8 @@ export default function Logo(props){
   const [addData, setAddData] = useState(null);
   const [errView, setErrView] = useState(null);
   const [selectWordBook, setSelectWordBook] = useState(null);
-
+  const words = props.words;
+  const setWords = props.setWords;
   const setMenu = props.setMenu;
   const getMenu = props.getMenu;
   const wordBooks = props.wordBooks;
@@ -79,7 +80,21 @@ export default function Logo(props){
         }
         const url = "/api/word/add";
         axios.post(url, wordData)
-        .then(req => setAddData(null))
+        .then(req => {
+          setAddData(null)
+
+          //
+          if(words != null){
+            const url = "/api/word/get"
+            const option = {
+              id : props.user.id,
+              wordbookId : wordData.wordbookId
+            }
+            axios.post(url, option)
+            .then(req => req.data && setWords(req.data))
+          }
+          //
+        })
       }
     }
 
